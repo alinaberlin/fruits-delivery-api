@@ -9,6 +9,7 @@ const UserSchema = new Schema({
     email:  { type: String, required: true, unique: true },
     password:  { type: String, required: true },
     admin:  { type: Boolean, default: false },
+    orders: [{ type: Schema.Types.ObjectId, ref: 'Order' }],
     address: {
         type: {
             type: String,
