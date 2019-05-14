@@ -5,10 +5,10 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema({
  date :{type :Date, default: Date.now },
- order:{type: String, required: true},
- deliveryAddress:{type: String, required: true}
- 
-    
+ costumer:{type: String, required: true},
+ quantity:{type: Number, required: true},
+ method: {type: 'String', required: true}
+   
 })
 
 const Order = mongoose.model("Order", OrderSchema);
