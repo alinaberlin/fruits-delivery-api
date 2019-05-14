@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const AgendaSchema = new Schema({
     date :{type :Date, default: Date.now },
-    order:{type: String, required: true},
+    order: {type: Schema.Types.ObjectId, ref: 'Order'},
     deliveryAddress:{type: String, required: true}
 })
 
