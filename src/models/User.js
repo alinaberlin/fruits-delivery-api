@@ -18,6 +18,22 @@ const UserSchema = new Schema({
         coordinates: {
             type: [Number],
             required: true
+        },
+        street: {
+            type: String,
+            required: true
+        },
+        city: {
+            type: String,
+            required: true
+        },
+        country: {
+            type: String,
+            required: true
+        },
+        postcode: {
+            type: String,
+            required: true
         }
     }
 })
