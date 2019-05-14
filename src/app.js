@@ -8,9 +8,10 @@ const fs = require('fs')
 const http = require('http')
 const WebSocket = require('ws')
 const mongoose = require("mongoose");
-
+const passport = require('passport')
 const mongoConnectURI = process.env.MONGOURL || "mongodb://localhost/fruits-delivery";
 const registration = require('./routes/registration')
+const profile = require('./routes/profile')
 const HERE_APP_ID = "sTWYdO0PrgRXmMm1ViBr";
 const HERE_APP_CODE = "IdqCe27szfQfJ9i4z5Zq6Q";
 // auth settings
@@ -33,6 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api', registration)
 app.use('/auth', auth);
+app.use('/api', passport.authenticate('jwt', {session: false}), profile);
 app.get("/", (req, res) => res.json({ greeting: "Hello World!" }));
 
 // generate certificates: openssl req -nodes -new -x509 -keyout server.key -out server.cert
