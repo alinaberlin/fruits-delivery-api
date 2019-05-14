@@ -5,8 +5,8 @@ const Agenda = require('../models/Agenda')
 
 router.post('/agenda', (req, res, next) => {
     const user = req.body
-    Agenda.create(user).then(result => {
-        console.log("user save", result)
+    Agenda.create(agenda).then(result => {
+        console.log("agenda save", result)
         res.json(result)
     }).catch(error => {
         if (error.code === 11000) {
