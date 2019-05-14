@@ -1,15 +1,16 @@
-'use strict'
+"use strict";
 
-const express = require('express')
-const app = express()
-const passport = require('passport');
+const express = require("express");
+const app = express();
+const passport = require("passport");
 
 const fs = require('fs')
 const http = require('http')
 const WebSocket = require('ws')
 
-const HERE_APP_ID = 'sTWYdO0PrgRXmMm1ViBr'
-const HERE_APP_CODE = 'IdqCe27szfQfJ9i4z5Zq6Q'
+
+const HERE_APP_ID = "sTWYdO0PrgRXmMm1ViBr";
+const HERE_APP_CODE = "IdqCe27szfQfJ9i4z5Zq6Q";
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -23,16 +24,16 @@ passport.deserializeUser(function(user, done) {
 
 app.use(passport.initialize());
 
-app.get('/', (req, res) => res.send('Hello World!'))
-
+app.get("/", (req, res) => res.json({ greeting: "Hello World!" }));
 
 // generate certificates: openssl req -nodes -new -x509 -keyout server.key -out server.cert
 const httpServer = http.createServer(app);
 
+
 const wss = new WebSocket.Server({
-    'server': httpServer
+    server: httpServer
 });
 
 module.exports = {
     httpServer
-}
+};
