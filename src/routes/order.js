@@ -16,4 +16,8 @@ router.post('/order', (req, res, next) => {
     })
 })
 
+router.get('/order', (req, res, next) => {
+    Order.find({customer: req.user._id}).then(result => res.json(result))
+})
+
 module.exports = router;
