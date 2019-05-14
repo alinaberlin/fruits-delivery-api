@@ -10,7 +10,7 @@ const WebSocket = require('ws')
 const mongoose = require("mongoose");
 
 const mongoConnectURI = process.env.MONGOURL || "mongodb://localhost/fruits-delivery";
-const userRoutes = require('./routes/user-routes')
+const registration = require('./routes/registration')
 const HERE_APP_ID = "sTWYdO0PrgRXmMm1ViBr";
 const HERE_APP_CODE = "IdqCe27szfQfJ9i4z5Zq6Q";
 // auth settings
@@ -31,7 +31,7 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/api', userRoutes)
+app.use('/api', registration)
 app.use('/auth', auth);
 app.get("/", (req, res) => res.json({ greeting: "Hello World!" }));
 
