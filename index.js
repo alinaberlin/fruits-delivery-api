@@ -2,8 +2,8 @@
 
 const { httpServer } = require('./src/app')
 
-const port = 443
+const port = 3001
 
 httpServer.listen(port,  () => {
-    console.log('Example app listening on port 443! Go to https://localhost:443/')
+    console.log('Example app listening on port 443! Go to http://localhost:3001/')
 });

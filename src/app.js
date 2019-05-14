@@ -5,7 +5,7 @@ const app = express()
 const passport = require('passport');
 
 const fs = require('fs')
-const https = require('https')
+const http = require('http')
 const WebSocket = require('ws')
 
 const HERE_APP_ID = 'sTWYdO0PrgRXmMm1ViBr'
@@ -27,10 +27,7 @@ app.get('/', (req, res) => res.send('Hello World!'))
 
 
 // generate certificates: openssl req -nodes -new -x509 -keyout server.key -out server.cert
-const httpServer = https.createServer({
-    key: fs.readFileSync('ssl/server.key'),
-    cert: fs.readFileSync('ssl/server.cert')
-}, app);
+const httpServer = http.createServer(app);
 
 const wss = new WebSocket.Server({
     'server': httpServer
