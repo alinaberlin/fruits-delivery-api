@@ -5,8 +5,8 @@ const router = express.Router();
 const order = require('../models/Order')
 
 router.post('/order', (req, res, next) => {
-    const user = req.body
-    User.create(user).then(result => {
+    const order = req.body
+    order.create(user).then(result => {
         console.log("user save", result)
         res.json(result)
     }).catch(error => {
