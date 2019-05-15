@@ -5,13 +5,14 @@ const app = express();
 const mongoose = require("mongoose");
 const passport = require("passport");
 const mongoConnectURI = process.env.MONGOURL || "mongodb://localhost/fruits-delivery";
-
+const cors = require("cors");
 const fs = require("fs");
 const http = require("http");
 const WebSocket = require("ws");
 const bodyParser = require("body-parser");
 const user = require("./routes/user");
 const auth = require("./routes/auth");
+const order = require("./routes/order");
 require("./auth/passport");
 
 const HERE_APP_ID = "sTWYdO0PrgRXmMm1ViBr";
@@ -27,8 +28,10 @@ mongoose
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use("/api", user);
+app.use("/api", passport.authenticate("jwt", { session: false }), order);
 app.use("/auth", auth);
 app.get("/", (req, res) => res.json({ greeting: "Hello World!" }));
 
